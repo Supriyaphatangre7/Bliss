@@ -22,6 +22,7 @@ import ProdSummary from "./components/prodSummary";
 import Avatar from "./components/Avatar";
 import TryOption from "./components/TryOption";
 import Cameraopt from "./components/Cameraopt";
+import Imageopt from "./components/Imageopt";
 
 function App() {
   return (
@@ -51,7 +52,7 @@ function App() {
         <Route path="/avatar" element={<Avatar />} />
         <Route path="/try_on" element={<TryOption />} />
         <Route path="/camera" element={<Cameraopt />} />
-        {/* <Route path="/image" element={</>} /> */}
+        <Route path="/image" element={<Imageopt/>} />
 
 
        
