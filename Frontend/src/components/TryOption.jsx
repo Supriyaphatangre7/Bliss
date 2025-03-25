@@ -9,16 +9,38 @@ const TryOption = () => {
   
   // Receiving clothingImage and clothingCategory
   const product = location.state?.clothingImage || null;
-  const clothingCategory = location.state?.clothingCategory || "Unknown";
+  const clothingCategory = location.state?.clothingCategory || "top";
 
   const handleCameraClick = () => {
     if (!product) return;
-    navigate("/camera", { state: { clothingImage: product, clothingCategory } });
+    
+    // Navigate to different components based on category
+    if (clothingCategory.toLowerCase() === "bottom" || 
+        clothingCategory.toLowerCase() === "short") {
+      navigate("/camerabottom", { 
+        state: { 
+          clothingImage: product, 
+          clothingCategory 
+        } 
+      });
+    } else {
+      navigate("/camera", { 
+        state: { 
+          clothingImage: product, 
+          clothingCategory 
+        } 
+      });
+    }
   };
 
   const handleImageClick = () => {
     if (!product) return;
-    navigate("/image", { state: { clothingImage: product, clothingCategory } });
+    navigate("/image", { 
+      state: { 
+        clothingImage: product, 
+        clothingCategory 
+      } 
+    });
   };
 
   return (
@@ -33,9 +55,9 @@ const TryOption = () => {
         {/* Right: Text & Buttons */}
         <div className="w-full md:w-1/2 flex flex-col items-center text-center">
           <h1 className="text-4xl font-extrabold text-gray-800 mb-6">Try On Options</h1>
-          <hr className="border-t-2 border-black w-full mb-4" /> {/* Horizontal Line */}
+          <hr className="border-t-2 border-black w-full mb-4" />
           <h2 className="text-xl font-semibold text-gray-700 mb-4">
-            Category: {clothingCategory}
+            Category: {clothingCategory.charAt(0).toUpperCase() + clothingCategory.slice(1)}
           </h2>
           <p className="text-lg text-gray-600 mb-8">
             Choose how you want to try on your selected clothing.
