@@ -1,15 +1,16 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import * as poseModule from "@mediapipe/pose"; // Renamed to avoid confusion
+import * as poseModule from "@mediapipe/pose";
 import "@tensorflow/tfjs-backend-webgl";
 import { useLocation } from "react-router-dom";
 
 const Cameraopt = () => {
   const location = useLocation();
+  const subcategory = location.state?.subcategory || "top"; // Default to "top"
   const clothingImage = location.state?.clothingImage || "";
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-  const poseModelRef = useRef(null); // Renamed for clarity
-  const [isPoseLoaded, setPoseLoaded] = useState(false); // Renamed for consistency
+  const poseModelRef = useRef(null);
+  const [isPoseLoaded, setPoseLoaded] = useState(false);
   const [isClothingReady, setClothingReady] = useState(false);
   const clothingImgRef = useRef(new Image());
 
@@ -19,63 +20,75 @@ const Cameraopt = () => {
       setClothingReady(false);
       return;
     }
-  
+
     const img = new Image();
-    img.crossOrigin = "anonymous"; // Allow CORS
+    img.crossOrigin = "anonymous";
     img.src = clothingImage;
-  
+
     img.onload = () => {
       console.log("Clothing image loaded successfully");
       clothingImgRef.current = img;
       setClothingReady(true);
     };
-  
+
     img.onerror = (err) => {
       console.error("Failed to load clothing image:", err);
       setClothingReady(false);
     };
-  
+
     return () => {
       img.onload = null;
       img.onerror = null;
     };
   }, [clothingImage]);
-  
 
   // Function to overlay clothing
-  const overlayClothing = useCallback((ctx, landmarks) => { // Renamed for clarity
-    const canvas = canvasRef.current;
-    if (!canvas || !ctx || !isClothingReady || !clothingImgRef.current) return;
+  const overlayClothing = useCallback(
+    (ctx, landmarks) => {
+      const canvas = canvasRef.current;
+      if (!canvas || !ctx || !isClothingReady || !clothingImgRef.current) return;
 
-    const img = clothingImgRef.current;
-    
-    if (!img.complete || img.naturalWidth === 0) {
-      console.warn("Clothing image not ready for drawing");
-      return;
-    }
+      const img = clothingImgRef.current;
 
-    const leftShoulder = landmarks?.[11];
-    const rightShoulder = landmarks?.[12];
-    const leftHip = landmarks?.[23];
-    const rightHip = landmarks?.[24];
+      if (!img.complete || img.naturalWidth === 0) {
+        console.warn("Clothing image not ready for drawing");
+        return;
+      }
 
-    if (!leftShoulder || !rightShoulder || !leftHip || !rightHip) {
-      console.warn("Essential landmarks not detected.");
-      return;
-    }
+      const leftShoulder = landmarks?.[11];
+      const rightShoulder = landmarks?.[12];
+      const leftHip = landmarks?.[23];
+      const rightHip = landmarks?.[24];
 
-    try {
-      const clothingWidth = Math.abs(rightShoulder.x - leftShoulder.x) * canvas.width * 2.1;
-      const torsoHeight = Math.abs(leftHip.y - leftShoulder.y) * canvas.height;
-      const clothingHeight = torsoHeight * 1.3;
-      const x = ((leftShoulder.x + rightShoulder.x) / 2) * canvas.width - clothingWidth / 2;
-      const y = leftShoulder.y * canvas.height - clothingHeight * 0.2;
+      if (!leftShoulder || !rightShoulder || !leftHip || !rightHip) {
+        console.warn("Essential landmarks not detected.");
+        return;
+      }
 
-      ctx.drawImage(img, x, y, clothingWidth, clothingHeight);
-    } catch (error) {
-      console.error("Error drawing clothing:", error);
-    }
-  }, [isClothingReady]);
+      try {
+        const clothingWidth = Math.abs(rightShoulder.x - leftShoulder.x) * canvas.width * 2.1;
+        let clothingHeight, x, y;
+
+        if (subcategory === "bottom") {
+          // Position from the waist for bottom wear
+          clothingHeight = Math.abs(rightHip.y - leftHip.y) * canvas.height * 2;
+          x = ((leftHip.x + rightHip.x) / 2) * canvas.width - clothingWidth / 2;
+          y = leftHip.y * canvas.height;
+        } else {
+          // Position from the neck for tops
+          const torsoHeight = Math.abs(leftHip.y - leftShoulder.y) * canvas.height;
+          clothingHeight = torsoHeight * 1.3;
+          x = ((leftShoulder.x + rightShoulder.x) / 2) * canvas.width - clothingWidth / 2;
+          y = leftShoulder.y * canvas.height - clothingHeight * 0.2;
+        }
+
+        ctx.drawImage(img, x, y, clothingWidth, clothingHeight);
+      } catch (error) {
+        console.error("Error drawing clothing:", error);
+      }
+    },
+    [isClothingReady, subcategory]
+  );
 
   // Draw detected pose and apply clothing overlay
   const drawResults = useCallback(
