@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/auth";
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import registerImage from "../assets/register1.jpg";
 
 const Register = () => {
   const [user, setUser] = useState({
@@ -13,8 +13,8 @@ const Register = () => {
     password: "",
   });
 
-  const navigate=useNavigate();
-  const {storeTokenInLs}=useAuth();
+  const navigate = useNavigate();
+  const { storeTokenInLs } = useAuth();
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -44,13 +44,17 @@ const Register = () => {
 
       if (response.ok) {
         storeTokenInLs(responseData.token);
-       
-        toast.success('Registration successful!');
+
+        toast.success("Registration successful!");
         setUser({ username: "", email: "", password: "" });
         console.log(responseData);
-        navigate("/login")
-      } else{
-        toast.error(responseData.extraDetails?responseData.extraDetails.join(" ,"):responseData.message);
+        navigate("/login");
+      } else {
+        toast.error(
+          responseData.extraDetails
+            ? responseData.extraDetails.join(" ,")
+            : responseData.message
+        );
       }
     } catch (error) {
       console.error("Error", error);
@@ -59,82 +63,64 @@ const Register = () => {
 
   return (
     <section className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="card w-full max-w-3xl bg-white shadow-xl p-8">
-        <div className="text-center mb-6">
-          <h2 className="text-4xl font-bold">Register</h2>
+      <div className="flex flex-col md:flex-row max-w-[90vw] md:max-w-[80vw] bg-white shadow-xl overflow-hidden rounded-4xl">
+        <div
+          className={
+            "image-section w-full md:w-1/2  flex items-center justify-center transition-all duration-500"
+          }
+        >
+          <img
+            src={registerImage}
+            alt="Auth Illustration"
+            className="auth-image w-full h-full object-cover"
+          />
         </div>
 
-        <div className="flex flex-col lg:flex-row justify-center items-center gap-8">
+        <div className="form-section w-full md:w-1/2 p-10 flex flex-col justify-center transition-all duration-500">
+          <h1 className="text-center text-5xl font-bold text-cyan-500 signika-negative">
+            Register
+          </h1>
           {/* Registration Form */}
-          <div className="w-full lg:w-1/2">
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Username</span>
-                </label>
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Username"
-                  value={user.username}
-                  onChange={handleInput}
-                  className="input input-bordered w-full"
-                  required
-                />
-              </div>
 
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="name@example.com"
-                  value={user.email}
-                  onChange={handleInput}
-                  className="input input-bordered w-full"
-                  required
-                />
-              </div>
+          <form className="mt-6" onSubmit={handleSubmit}>
+            <input
+              type="text"
+              name="username"
+              placeholder="Your Name"
+              value={user.username}
+              onChange={handleInput}
+              className="w-full px-2 py-2 border-b border-cyan-500 focus:border-cyan-700 focus:outline-none rounded-b-md bg-transparent mb-3.5"
+              required
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={user.email}
+              onChange={handleInput}
+              className="w-full px-2 py-2 border-b border-cyan-500 focus:border-cyan-700 focus:outline-none rounded-b-md  bg-transparent mb-3.5"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              className="w-full px-2 py-2 border-b border-cyan-500 focus:border-cyan-700 focus:outline-none rounded-b-md  bg-transparent mb-3.5"
+              value={user.password}
+              onChange={handleInput}
+              required
+            />
 
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  className="input input-bordered w-full"
-                  value={user.password}
-                  onChange={handleInput}
-                  required
-                />
-              </div>
-
-              <button className="btn bg-black text-white w-full hover:bg-gray-900">
-                Register
-              </button>
-            </form>
-          </div>
-
-          {/* Divider */}
-          <div className="hidden lg:block w-px bg-gray-300 h-40"></div>
-          <div className="lg:hidden w-full border-t border-gray-300"></div>
-
-          {/* Login Section */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left">
-            <h6 className="text-xl font-semibold">Already have an account?</h6>
-            <p className="text-gray-500 mt-2">
-              Log in now to access your account and enjoy exclusive features!
-            </p>
+            <button
+              type="submit"
+              className="w-full mt-4 bg-cyan-600 text-white py-2 rounded-md hover:opacity-90 mb-2"
+            >
+              Register
+            </button>
             <Link to="/login">
-              <button className="btn bg-black text-white w-full lg:w-auto hover:bg-gray-900">
-                Log in
-              </button>
+              <p className="text-md text-right">Already have an account?</p>
             </Link>
-          </div>
+          </form>
         </div>
       </div>
     </section>
