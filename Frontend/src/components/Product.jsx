@@ -81,10 +81,16 @@ const Product = () => {
 
     navigate("/cart");
   };
- const handleTryOn = () => {
-  if (!product?.imodel) return;
-  navigate("/try_on", { state: { clothingImage: product.imodel } });
-};
+  const handleTryOn = () => {
+    if (!product?.imodel) return;
+    navigate("/try_on", { 
+      state: { 
+        clothingImage: product.imodel,
+        clothingCategory: product.subcategory 
+      } 
+    });
+  };
+  
 
   if (loading) return <div className="container mx-auto px-4 py-8">Loading...</div>;
   if (error) return (
