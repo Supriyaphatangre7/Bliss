@@ -134,11 +134,8 @@ const Product = () => {
                   }`}
                 >
                   {size}
-                  {sizePriceMultiplier[size] > 1 && (
-                    <span className="block text-xs mt-1">
-                      (+{(sizePriceMultiplier[size] - 1) * 100}%)
-                    </span>
-                  )}
+                 
+                  
                 </button>
               ))}
             </div>
