@@ -1,94 +1,57 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
-import * as poseModule from "@mediapipe/pose";
+import * as pose from "@mediapipe/pose";
 import "@tensorflow/tfjs-backend-webgl";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom"; // Import useLocation
 
-const Cameraopt = () => {
-  const location = useLocation();
-  const subcategory = location.state?.subcategory || "top"; // Default to "top"
-  const clothingImage = location.state?.clothingImage || "";
+const Cameraopt= () => {
+    const location = useLocation(); // Get navigation state
+  const clothingImage = location.state?.clothingImage || ""; // Retrieve clothing image from state
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
-  const poseModelRef = useRef(null);
-  const [isPoseLoaded, setPoseLoaded] = useState(false);
-  const [isClothingReady, setClothingReady] = useState(false);
+  const poseRef = useRef(null);
+  const [isPoseLoaded, setIsPoseLoaded] = useState(false);
   const clothingImgRef = useRef(new Image());
 
   // Load clothing image
   useEffect(() => {
-    if (!clothingImage) {
-      setClothingReady(false);
-      return;
+    if (clothingImage) {
+      clothingImgRef.current.src = clothingImage;
+      clothingImgRef.current.onload = () => console.log("Clothing image loaded!");
     }
-
-    const img = new Image();
-    img.crossOrigin = "anonymous";
-    img.src = clothingImage;
-
-    img.onload = () => {
-      console.log("Clothing image loaded successfully");
-      clothingImgRef.current = img;
-      setClothingReady(true);
-    };
-
-    img.onerror = (err) => {
-      console.error("Failed to load clothing image:", err);
-      setClothingReady(false);
-    };
-
-    return () => {
-      img.onload = null;
-      img.onerror = null;
-    };
   }, [clothingImage]);
 
   // Function to overlay clothing
-  const overlayClothing = useCallback(
-    (ctx, landmarks) => {
-      const canvas = canvasRef.current;
-      if (!canvas || !ctx || !isClothingReady || !clothingImgRef.current) return;
+  const applyClothingOverlay = useCallback((ctx, landmarks) => {
+    const canvas = canvasRef.current;
+    if (!canvas || !ctx) return;
 
-      const img = clothingImgRef.current;
+    if (!clothingImgRef.current.complete) {
+      console.warn("Clothing image not yet loaded.");
+      return;
+    }
 
-      if (!img.complete || img.naturalWidth === 0) {
-        console.warn("Clothing image not ready for drawing");
-        return;
-      }
+    // Get key pose points
+    const leftShoulder = landmarks[11];
+    const rightShoulder = landmarks[12];
+    const leftHip = landmarks[23];
+    const rightHip = landmarks[24];
 
-      const leftShoulder = landmarks?.[11];
-      const rightShoulder = landmarks?.[12];
-      const leftHip = landmarks?.[23];
-      const rightHip = landmarks?.[24];
+    if (!leftShoulder || !rightShoulder || !leftHip || !rightHip) {
+      console.warn("Essential landmarks not detected.");
+      return;
+    }
 
-      if (!leftShoulder || !rightShoulder || !leftHip || !rightHip) {
-        console.warn("Essential landmarks not detected.");
-        return;
-      }
+    // Calculate clothing dimensions
+    const clothingWidth =
+      Math.abs(rightShoulder.x - leftShoulder.x) * canvas.width * 2.1;
+    const torsoHeight = Math.abs(leftHip.y - leftShoulder.y) * canvas.height;
+    const clothingHeight = torsoHeight * 1.3;
+    const x =
+      ((leftShoulder.x + rightShoulder.x) / 2) * canvas.width - clothingWidth / 2;
+    const y = leftShoulder.y * canvas.height - clothingHeight * 0.2;
 
-      try {
-        const clothingWidth = Math.abs(rightShoulder.x - leftShoulder.x) * canvas.width * 2.1;
-        let clothingHeight, x, y;
-
-        if (subcategory === "bottom") {
-          // Position from the waist for bottom wear
-          clothingHeight = Math.abs(rightHip.y - leftHip.y) * canvas.height * 2;
-          x = ((leftHip.x + rightHip.x) / 2) * canvas.width - clothingWidth / 2;
-          y = leftHip.y * canvas.height;
-        } else {
-          // Position from the neck for tops
-          const torsoHeight = Math.abs(leftHip.y - leftShoulder.y) * canvas.height;
-          clothingHeight = torsoHeight * 1.3;
-          x = ((leftShoulder.x + rightShoulder.x) / 2) * canvas.width - clothingWidth / 2;
-          y = leftShoulder.y * canvas.height - clothingHeight * 0.2;
-        }
-
-        ctx.drawImage(img, x, y, clothingWidth, clothingHeight);
-      } catch (error) {
-        console.error("Error drawing clothing:", error);
-      }
-    },
-    [isClothingReady, subcategory]
-  );
+    ctx.drawImage(clothingImgRef.current, x, y, clothingWidth, clothingHeight);
+  }, []);
 
   // Draw detected pose and apply clothing overlay
   const drawResults = useCallback(
@@ -105,6 +68,7 @@ const Cameraopt = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 
+      // Draw pose landmarks
       results.poseLandmarks.forEach((landmark) => {
         ctx.beginPath();
         ctx.arc(
@@ -118,15 +82,15 @@ const Cameraopt = () => {
         ctx.fill();
       });
 
-      overlayClothing(ctx, results.poseLandmarks);
+      applyClothingOverlay(ctx, results.poseLandmarks);
     },
-    [overlayClothing]
+    [applyClothingOverlay] // ✅ Included applyClothingOverlay as a dependency
   );
 
   // Pose detection loop
   const detectPose = useCallback(async () => {
-    if (!poseModelRef.current || !videoRef.current) return;
-    await poseModelRef.current.send({ image: videoRef.current });
+    if (!poseRef.current || !videoRef.current) return;
+    await poseRef.current.send({ image: videoRef.current });
     requestAnimationFrame(detectPose);
   }, []);
 
@@ -136,7 +100,7 @@ const Cameraopt = () => {
 
     console.log("Initializing pose detection...");
 
-    const poseModel = new poseModule.Pose({
+    const poseModel = new pose.Pose({
       locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/pose/${file}`,
     });
 
@@ -149,7 +113,7 @@ const Cameraopt = () => {
     });
 
     poseModel.onResults(drawResults);
-    poseModelRef.current = poseModel;
+    poseRef.current = poseModel;
 
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -162,9 +126,10 @@ const Cameraopt = () => {
       console.error("Error accessing camera:", error);
     }
 
-    setPoseLoaded(true);
-  }, [drawResults, detectPose]);
+    setIsPoseLoaded(true);
+  }, [drawResults, detectPose]); // ✅ Included drawResults & detectPose
 
+  // Start pose detection on mount
   useEffect(() => {
     startPoseDetection();
   }, [startPoseDetection]);
@@ -172,7 +137,6 @@ const Cameraopt = () => {
   return (
     <div>
       {!isPoseLoaded && <p>Loading Pose Model...</p>}
-      {!isClothingReady && clothingImage && <p>Loading Clothing Image...</p>}
       <video ref={videoRef} autoPlay playsInline muted style={{ display: "none" }} />
       <canvas ref={canvasRef} width="640" height="480" />
     </div>
