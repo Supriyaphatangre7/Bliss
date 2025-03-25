@@ -1,28 +1,27 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 const slides = [
   {
     id: 1,
-    src: "image/jiwon.jpg",
-    title: "Fashion Changing Always",
-    desc: "Discover the latest trends and elevate your style with our exclusive collection.",
+    src: "image/Slider1.jpg",
+    title: "",
+    desc: "",
   },
   {
     id: 2,
-    src: "image/j4.jpg",
-    title: "Wear the Future, Own the Streets",
-    desc: "Timeless elegance meets modern fashion. Step into luxury with our handpicked styles.",
+    src: "image/Slider2.jpg",
+    title: "",
+    desc: "",
   },
   {
     id: 3,
-    src: "image/j2.jpg",
+    src: "image/jiwon.jpg",
     title: "Where Elegance Meets Everyday Glam",
     desc: "Unleash your street style. Bold, edgy, and effortlessly cool – just like you.",
   },
   {
     id: 4,
-    src: "image/l1.jpg",
+    src: "image/slider4.jpg",
     title: "Fashion with a Conscience",
     desc: "Simplicity with a touch of sophistication. Find your perfect minimal look.",
   },
@@ -48,7 +47,7 @@ const Slider = () => {
   };
 
   return (
-    <div className="relative w-full h-[700px] overflow-hidden rounded-md">
+    <div className="relative w-full h-[90vh] overflow-hidden rounded-md">
       {/* Slider Container */}
       <div
         className="flex w-full h-full transition-transform duration-700 ease-in-out"
@@ -56,17 +55,23 @@ const Slider = () => {
       >
         {slides.map((slide, index) => (
           <div key={index} className="w-full flex-shrink-0 relative h-full">
-            <img src={slide.src} className="w-full h-full object-cover" alt={slide.title} />
+            <img
+              src={slide.src}
+              className="w-full h-full object-cover"
+              alt={slide.title}
+            />
             <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
             <div className="absolute left-10 md:left-20 top-1/2 -translate-y-1/2 text-white drop-shadow-2xl space-y-4 max-w-lg">
-              <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">{slide.title}</h2>
+              <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
+                {slide.title}
+              </h2>
               <p className="text-lg md:text-xl font-medium">{slide.desc}</p>
-              <Link
+              {/* <Link
                 to="/shop"
                 className="btn btn-neutral rounded-lg px-6 py-3 text-lg font-semibold hover:bg-gray-900 hover:scale-105 transition"
               >
                 Shop Now
-              </Link>
+              </Link> */}
             </div>
           </div>
         ))}
