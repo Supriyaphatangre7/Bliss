@@ -52,33 +52,13 @@ export const Shop = () => {
                 key={val._id}
                 className="bg-white shadow-lg rounded-2xl overflow-hidden hover:scale-105 transition transform duration-300 relative"
               >
-<<<<<<< HEAD
-                <div className="absolute top-3 right-3 flex gap-2">
-                  <div className="bg-gray-200 p-2 rounded-full cursor-pointer hover:bg-gray-300 transition">
-                    <FaRegHeart className="text-black text-lg" />
-                  </div>
-                  <div
-                    className="bg-gray-200 p-2 rounded-full cursor-pointer hover:bg-gray-300 transition"
-                    onClick={() => navigate(`/try-on?clothingImage=${encodeURIComponent(val.image)}`)}>
-                    <FaCamera className="text-black text-lg" />
-                  </div>
-                </div>
-
-                <div 
-                  className="h-120 cursor-pointer" 
-                  onClick={() => navigate(`/product/${val._id}`)}>
-                  <img 
-                    src={val.image} 
-                    alt={val.name} 
-=======
                 <div
-                  className="h-92 cursor-pointer"
+                  className="h-120 cursor-pointer"
                   onClick={() => navigate(`/product/${val._id}`)}
                 >
                   <img
                     src={val.image}
                     alt={val.name}
->>>>>>> 5bf78fe87f25e4682e9226048c489f9de1ae7eff
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       e.target.src = "/fallback-image.jpg";
@@ -88,7 +68,9 @@ export const Shop = () => {
                 </div>
 
                 <div className="p-4 text-center flex flex-col justify-between h-28">
-                  <h5 className="text-lg font-semibold text-cyan-600">{val.name}</h5>
+                  <h5 className="text-lg font-semibold text-cyan-600">
+                    {val.name}
+                  </h5>
                   <p className="text-gray-700 text-sm">Price: ₹{val.price}</p>
                 </div>
               </div>
