@@ -58,7 +58,7 @@ export const Shop = () => {
                 </div>
 
                 <div 
-                  className="h-92 cursor-pointer" 
+                  className="h-120 cursor-pointer" 
                   onClick={() => navigate(`/product/${val._id}`)}>
                   <img 
                     src={val.image} 

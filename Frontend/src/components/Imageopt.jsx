@@ -84,6 +84,27 @@ const Imageopt = () => {
     }
   };
 
+
+  const handleDownload = () => {
+    if (!canvasRef.current) return;
+    
+    // Create a temporary link element
+    const link = document.createElement('a');
+    
+    // Set the canvas image as the href
+    link.href = canvasRef.current.toDataURL({
+      format: 'png',
+      quality: 1.0
+    });
+    
+    // Set the download filename
+    link.download = `virtual-tryon-${clothingCategory}-${new Date().getTime()}.png`;
+    
+    // Trigger the download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <>
     <div className="min-h-screen bg-gray-100 p-6 flex flex-col items-center">
@@ -132,6 +153,13 @@ const Imageopt = () => {
               >
                 ❌ Reset
               </button>
+
+              <button
+  onClick={handleDownload}
+  className="px-6 py-3 text-lg font-semibold text-white bg-gradient-to-r from-green-500 to-teal-600 rounded-lg hover:from-teal-600 hover:to-green-500 transition-all flex items-center gap-3 shadow-xl"
+>
+  ⬇️ Download Image
+</button>
             </div>
           )}
           <input
