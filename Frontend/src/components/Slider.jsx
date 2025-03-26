@@ -9,15 +9,15 @@ const slides = [
   },
   {
     id: 2,
-    src: "image/l1.jpg",
-title: "Where Elegance Meets Everyday Glam",
-    desc: "Unleash your street style. Bold, edgy, and effortlessly cool – just like you."
-  },
-  {
-    id: 3,
     src: "image/j4.jpg",
     title: "Where Elegance Meets Everyday Glam",
     desc: "Unleash your street style. Bold, edgy, and effortlessly cool – just like you.",
+  },
+  {
+    id: 3,
+    src: "image/l1.jpg",
+    title: "Where Elegance Meets Everyday Glam",
+    desc: "Unleash your street style. Bold, edgy, and effortlessly cool – just like you."
   },
   {
     id: 4,
@@ -60,18 +60,12 @@ const Slider = () => {
               className="w-full h-full object-cover"
               alt={slide.title}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
             <div className="absolute left-10 md:left-20 top-1/2 -translate-y-1/2 text-white drop-shadow-2xl space-y-4 max-w-lg">
               <h2 className="text-4xl md:text-5xl font-extrabold leading-tight">
                 {slide.title}
               </h2>
               <p className="text-lg md:text-xl font-medium">{slide.desc}</p>
-              {/* <Link
-                to="/shop"
-                className="btn btn-neutral rounded-lg px-6 py-3 text-lg font-semibold hover:bg-gray-900 hover:scale-105 transition"
-              >
-                Shop Now
-              </Link> */}
             </div>
           </div>
         ))}
