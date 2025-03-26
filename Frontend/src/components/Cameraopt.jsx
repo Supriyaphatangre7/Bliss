@@ -135,10 +135,10 @@ const Cameraopt= () => {
   }, [startPoseDetection]);
 
   return (
-    <div>
+    <div className="min-h-screen flex justify-center items-center ">
       {!isPoseLoaded && <p>Loading Pose Model...</p>}
       <video ref={videoRef} autoPlay playsInline muted style={{ display: "none" }} />
-      <canvas ref={canvasRef} width="640" height="480" />
+      <canvas ref={canvasRef} width="640" height="480" className="border-3 rounded-2xl h-[90vh] shadow-gray-600" />
     </div>
   );
 };

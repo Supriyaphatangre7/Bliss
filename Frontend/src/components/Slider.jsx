@@ -3,25 +3,25 @@ import React, { useState, useEffect } from "react";
 const slides = [
   {
     id: 1,
-    src: "image/Slider1.jpg",
-    title: "",
-    desc: "",
-  },
-  {
-    id: 2,
-    src: "image/Slider2.jpg",
-    title: "",
-    desc: "",
-  },
-  {
-    id: 3,
     src: "image/jiwon.jpg",
     title: "Where Elegance Meets Everyday Glam",
     desc: "Unleash your street style. Bold, edgy, and effortlessly cool – just like you.",
   },
   {
+    id: 2,
+    src: "image/l1.jpg",
+title: "Where Elegance Meets Everyday Glam",
+    desc: "Unleash your street style. Bold, edgy, and effortlessly cool – just like you."
+  },
+  {
+    id: 3,
+    src: "image/j4.jpg",
+    title: "Where Elegance Meets Everyday Glam",
+    desc: "Unleash your street style. Bold, edgy, and effortlessly cool – just like you.",
+  },
+  {
     id: 4,
-    src: "image/slider4.jpg",
+    src: "image/j2.jpg",
     title: "Fashion with a Conscience",
     desc: "Simplicity with a touch of sophistication. Find your perfect minimal look.",
   },
