@@ -35,30 +35,25 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/logout" element={<Logout />} />
 
-        <Route element={<ProtectedRoutes/>}>
-
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/itemhome" element={<ItemHome />} />
-        <Route path="/contact" element={<Contactus />} />
-        <Route path="/slider" element={<Slider/>} />
-        <Route path="/hero" element={<Hero/>} />
-        <Route path="/categories" element={<Categories/>} />
-        <Route path="/about" element={<AboutUs/>} />
-        <Route path="/pslider" element={<Pslider/>} />
-        <Route path="/product/:id" element={<Product/>}/>
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/buy/:id" element={<Buy />} />
-        <Route path="/ordersuccess" element={<OrderSuccess />} />
-        <Route path="/prodsummary" element={<ProdSummary />} />
-        <Route path="/avatar" element={<Avatar />} />
-        <Route path="/try_on" element={<TryOption />} />
-        <Route path="/camera" element={<Cameraopt />} />
-        <Route path="/image" element={<Imageopt/>} />
-        <Route path="/camerabottom" element={<Camerabottom/>} />
-
-
-
-       
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/itemhome" element={<ItemHome />} />
+          <Route path="/contact" element={<Contactus />} />
+          <Route path="/slider" element={<Slider />} />
+          <Route path="/hero" element={<Hero />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/pslider" element={<Pslider />} />
+          <Route path="/product/:id" element={<Product />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/buy/:id" element={<Buy />} />
+          <Route path="/ordersuccess" element={<OrderSuccess />} />
+          <Route path="/prodsummary" element={<ProdSummary />} />
+          <Route path="/avatar" element={<Avatar />} />
+          <Route path="/try_on" element={<TryOption />} />
+          <Route path="/camera" element={<Cameraopt />} />
+          <Route path="/image" element={<Imageopt />} />
+          <Route path="/camerabottom" element={<Camerabottom />} />
         </Route>
       </Routes>
       <Footer />

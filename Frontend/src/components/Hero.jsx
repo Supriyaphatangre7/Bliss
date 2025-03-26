@@ -1,8 +1,13 @@
 import React from "react";
-import Lottie from "lottie-react";
-import anim1 from "../animation/h1.json";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
+  const handleClick=()=>{
+    navigate("/shop");
+  }
+
   return (
     <div className="flex flex-col md:flex-row items-center justify-between bg-white text-gray-900 px-10 md:px-20 py-16">
       {/* Left Side - Text Content with Slightly Reduced Width */}
@@ -14,7 +19,7 @@ const Hero = () => {
           Explore your style with our avatars. Try outfits virtually and shop
           with confidence!
         </p>
-        <button className="btn btn-outline rounded-lg px-6 py-3 text-lg font-semibold border-cyan-600 text-cyan-600 hover:bg-gray-700 hover:scale-105 transition">
+        <button className="btn btn-outline rounded-lg px-6 py-3 text-lg font-semibold border-cyan-600 text-cyan-600 hover:bg-cyan-700 hover:text-white hover:scale-105 transition" onClick={handleClick}>
           Try Now
         </button>
       </div>
