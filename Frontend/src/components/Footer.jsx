@@ -2,17 +2,16 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="footer footer-horizontal footer-center bg-gray-900 text-white rounded p-10">
+    <footer className="footer footer-horizontal footer-center bg-cyan-900 text-white mt-10 p-10 mb-0">
       {/* Navigation Links */}
-      <nav className="grid grid-flow-col gap-6 text-lg">
-        <a className="link link-hover hover:text-gray-300">About Us</a>
-        <a className="link link-hover hover:text-gray-300">Contact</a>
-        <a className="link link-hover hover:text-gray-300">Shop</a>
-        <a className="link link-hover hover:text-gray-300">Press Kit</a>
-      </nav>
+      <div className="grid grid-flow-col gap-6 text-lg">
+        <a className="link link-hover hover:text-gray-300" href="/about">About Us</a>
+        <a className="link link-hover hover:text-gray-300" href="contact">Contact</a>
+        <a className="link link-hover hover:text-gray-300" href="/shop">Shop</a>
+      </div>
 
       {/* Social Media Icons */}
-      <nav>
+      <div>
         <div className="grid grid-flow-col gap-6">
           <a className="hover:text-blue-400 transition">
             <svg
@@ -45,11 +44,11 @@ function Footer() {
             </svg>
           </a>
         </div>
-      </nav>
+      </div>
 
       {/* Copyright Text */}
-      <aside className="mt-4 text-gray-400">
-        <p>Copyright © {new Date().getFullYear()} - All Rights Reserved by ACME Industries Ltd</p>
+      <aside className="mt-4 text-white">
+        <p>Copyright © {new Date().getFullYear()} - All Rights Reserved by Bliss Industries Ltd</p>
       </aside>
     </footer>
   );
