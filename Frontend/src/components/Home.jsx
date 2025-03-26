@@ -10,7 +10,7 @@ const Home = () => {
       <Slider />
       <Hero />
       <div className="py-12 px-6">
-        <div className="max-w-5xl mx-auto text-center">
+        <div className="max-w-[85vw] mx-auto text-center">
           <h1 className="text-4xl font-bold mb-10 text-cyan-500">
             How It Works
           </h1>
@@ -92,9 +92,11 @@ const Home = () => {
       <Categories />
       <Pslider />
 
-      <div className="why-choose-us  py-12 px-6 text-center">
-        <h2 className="text-4xl font-bold mb-6 text-cyan-500">Why Choose Us?</h2>
-        <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+      <div className="why-choose-us  py-12 px-6 text-center justify-center">
+        <h2 className="text-4xl font-bold mb-6 text-cyan-500">
+          Why Choose Us?
+        </h2>
+        <div className="max-w-[85vw] mx-auto grid md:grid-cols-3 gap-6 justify-self-center">
           <div className="p-6 bg-white text-gray-800 rounded-lg shadow-lg">
             <h3 className="text-xl font-semibold mb-3">🔍 Realistic Try-On</h3>
             <p>
@@ -129,14 +131,6 @@ const Home = () => {
         <div className="card-body ">
           <img src="image/z6.jpg" alt="Movie" />
         </div>
-      </div>
-
-      <div className="poster w-full mt-10">
-        <img
-          src="image/d2.jpeg" // Replace with your image path
-          alt="h"
-          className="w-full h-auto max-h-[700px] object-cover"
-        />
       </div>
     </>
   );
