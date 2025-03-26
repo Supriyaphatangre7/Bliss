@@ -11,8 +11,9 @@ const Camerabottom = () => {
   const poseRef = useRef(null);
   const [isPoseLoaded, setIsPoseLoaded] = useState(false);
   const [isCameraOn, setIsCameraOn] = useState(false);
-    const [isStreaming, setIsStreaming] = useState(false);
+  const [isStreaming, setIsStreaming] = useState(false);
   const clothingImgRef = useRef(new Image());
+  const animationFrameRef = useRef(null); // Track animation frame
 
   // Load clothing image
   useEffect(() => {
@@ -50,13 +51,10 @@ const Camerabottom = () => {
     // Calculate height based on available landmarks
     let pantsHeight;
     if (leftAnkle) {
-      // Full leg length available
       pantsHeight = Math.abs(leftHip.y - leftAnkle.y) * canvas.height * 2.1;
     } else if (leftKnee) {
-      // Only upper leg available
       pantsHeight = Math.abs(leftHip.y - leftKnee.y) * canvas.height * 3.1;
     } else {
-      // Default height
       pantsHeight = canvas.height * 0.8;
     }
 
@@ -65,7 +63,7 @@ const Camerabottom = () => {
     const waistY = (leftHip.y + rightHip.y) / 2;
     
     const x = hipCenterX * canvas.width - hipWidth / 2;
-    const y = waistY * canvas.height - pantsHeight * 0.1; // Slight overlap at waist
+    const y = waistY * canvas.height - pantsHeight * 0.1;
 
     ctx.drawImage(clothingImgRef.current, x, y, hipWidth, pantsHeight);
   }, []);
@@ -90,10 +88,9 @@ const Camerabottom = () => {
   const detectPose = useCallback(async () => {
     if (!poseRef.current || !videoRef.current) return;
     await poseRef.current.send({ image: videoRef.current });
-    requestAnimationFrame(detectPose);
+    animationFrameRef.current = requestAnimationFrame(detectPose);
   }, []);
 
-  // Initialize and start pose detection
   const startPoseDetection = useCallback(async () => {
     if (!videoRef.current) return;
 
@@ -105,7 +102,7 @@ const Camerabottom = () => {
       modelComplexity: 1,
       smoothLandmarks: true,
       enableSegmentation: false,
-      minDetectionConfidence: 0.7, // Higher confidence for better accuracy
+      minDetectionConfidence: 0.7,
       minTrackingConfidence: 0.7
     });
 
@@ -126,6 +123,8 @@ const Camerabottom = () => {
         canvasRef.current.height = videoRef.current.videoHeight;
         videoRef.current.play();
         detectPose();
+        setIsCameraOn(true);
+        setIsStreaming(true);
       };
     } catch (error) {
       console.error("Error accessing camera:", error);
@@ -134,40 +133,47 @@ const Camerabottom = () => {
     setIsPoseLoaded(true);
   }, [drawResults, detectPose]);
 
+  const pauseCamera = useCallback(() => {
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
+    }
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+    setIsCameraOn(false);
+  }, []);
+
+  const resumeCamera = useCallback(() => {
+    if (videoRef.current && videoRef.current.srcObject) {
+      videoRef.current.play();
+      detectPose();
+      setIsCameraOn(true);
+    }
+  }, [detectPose]);
+
+  const stopCamera = useCallback(() => {
+    if (animationFrameRef.current) {
+      cancelAnimationFrame(animationFrameRef.current);
+      animationFrameRef.current = null;
+    }
+    if (videoRef.current?.srcObject) {
+      videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+      videoRef.current.srcObject = null;
+    }
+    setIsCameraOn(false);
+    setIsStreaming(false);
+  }, []);
+
   // Cleanup on unmount
   useEffect(() => {
-    startPoseDetection();
     return () => {
+      stopCamera();
       if (poseRef.current) {
         poseRef.current.close();
       }
-      if (videoRef.current?.srcObject) {
-        videoRef.current.srcObject.getTracks().forEach(track => track.stop());
-      }
     };
-  }, [startPoseDetection]);
-
-   const pauseCamera = useCallback(() => {
-      if (videoRef.current && videoRef.current.srcObject) {
-        videoRef.current.srcObject.getTracks().forEach(track => track.stop());
-        videoRef.current.srcObject = null;
-      }
-      setIsPoseLoaded(false);
-      setIsCameraOn(false);
-    }, []);
-  
-  
-    const stopCamera = () => {
-      setIsStreaming(false);
-      if (videoRef.current && videoRef.current.srcObject) {
-        const stream = videoRef.current.srcObject;
-        const tracks = stream.getTracks();
-        tracks.forEach((track) => track.stop());
-        videoRef.current.srcObject = null;
-      }
-      const ctx = canvasRef.current.getContext("2d");
-      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
-    };
+  }, [stopCamera]);
 
   return (
     <div style={{ position: 'relative', width: '100%', maxWidth: '640px', margin: '0 auto' }}>
@@ -180,11 +186,30 @@ const Camerabottom = () => {
         style={{ display: "none" }} 
       />
 
-<div className="flex gap-4">
-        <button onClick={startPoseDetection} disabled={isCameraOn} className="px-4 py-2 bg-green-500 text-white rounded-md">Start Camera</button>
-        <button onClick={pauseCamera} disabled={!isCameraOn} className="px-4 py-2 bg-yellow-500 text-white rounded-md">Pause Camera</button>
-        <button onClick={stopCamera} className="px-4 py-2 bg-red-500 text-white rounded">Stop Camera</button>
+      <div className="flex gap-4 mb-4">
+        {!isCameraOn ? (
+          <button 
+            onClick={startPoseDetection} 
+            className="px-4 py-2 bg-green-500 text-white rounded-md"
+          >
+            Start Camera
+          </button>
+        ) : (
+          <button 
+            onClick={pauseCamera} 
+            className="px-4 py-2 bg-yellow-500 text-white rounded-md"
+          >
+            Pause Camera
+          </button>
+        )}
+        <button 
+          onClick={stopCamera} 
+          className="px-4 py-2 bg-red-500 text-white rounded"
+        >
+          Stop Camera
+        </button>
       </div>
+      
       <canvas 
         ref={canvasRef} 
         width="640" 
@@ -192,12 +217,12 @@ const Camerabottom = () => {
         style={{ 
           width: '100%', 
           height: 'auto',
-          transform: 'scaleX(-1)' // Mirror the camera view
+          transform: 'scaleX(-1)',
+          border: '2px solid #ddd',
+          borderRadius: '8px'
         }}
       />
     </div>
-
-    
   );
 };
 

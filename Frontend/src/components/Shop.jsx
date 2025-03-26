@@ -53,7 +53,7 @@ export const Shop = () => {
 
   return (
     <>
-      <h1 className="text-center text-4xl font-bold my-6 signika-negative text-black-500">
+      <h1 className="text-center text-4xl font-bold my-6 signika-negative text-black-500 pt-10">
         {searchQuery
           ? `Search Results for "${searchQuery}"`
           : category
