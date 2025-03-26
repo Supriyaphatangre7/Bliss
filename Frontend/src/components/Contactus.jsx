@@ -9,7 +9,7 @@ import {
 import { useAuth } from "../store/auth";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import contactImg from "../assets/contact1.jpg";
+
 
 const Contactus = () => {
   const [contact, setContact] = useState({
@@ -82,7 +82,7 @@ const Contactus = () => {
         <div className="bg-white flex flex-col md:flex-row shadow-lg rounded-2xl overflow-hidden w-full max-w-4xl">
           <div className="left md:w-1/2">
             <img
-              src={contactImg}
+              src={"/image/contact.jpg"}
               alt="contact image"
               className="h-full w-full object-cover"
             />

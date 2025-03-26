@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth } from "../store/auth"; // Import useAuth
+import Layout from "./Layout";
 
 const Cart = () => {
   const [cart, setCart] = useState([]);
@@ -34,6 +35,7 @@ const Cart = () => {
   };
 
   return (
+    <Layout>
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-6 signika-negative text-cyan-500">
         Shopping Cart
@@ -80,6 +82,7 @@ const Cart = () => {
         </div>
       )}
     </div>
+    </Layout>
   );
 };
 

@@ -71,22 +71,22 @@ const Navbar = () => {
 
       <div className="navbar-center hidden lg:flex text-4xl">
         <ul className="menu menu-horizontal px-1">
-          <li className="text-xl">
+          <li className="text-xl font-semibold" >
             <Link to="/" className="hover:text-gray-700">
               Home
             </Link>
           </li>
-          <li className="text-xl">
+          <li className="text-xl font-semibold">
             <Link to="/shop" className="hover:text-gray-700">
               Shop
             </Link>
           </li>
-          <li className="text-xl">
+          <li className="text-xl font-semibold">
             <Link to="/about" className="hover:text-gray-700">
               About
             </Link>
           </li>
-          <li className="text-xl">
+          <li className="text-xl font-semibold">
             <Link to="/contact" className="hover:text-gray-700">
               Contact
             </Link>

@@ -19,25 +19,54 @@ const AboutUs = () => {
             interactive and immersive way to try on clothes virtually. No more guesswork—just 
             a seamless, fun, and accurate way to find the perfect fit! 
             Founded in <b>2025</b>, we have been redefining online fashion by introducing 
-            <b> virtual try-on avatars</b>, allowing customers to visualize outfits in 
+            <b> virtual try-on </b>, allowing customers to visualize outfits in 
             real-time before purchasing.
           </p>
 
           {/* What We Offer Section */}
-          <div className="space-y-3">
-            <h3 className="text-3xl font-semibold text-cyan-500">What We Offer</h3>
-            <ul className="list-none pl-5 text-gray-700 text-xl">
-              <li>
-                <b>Image-Based Try-On</b> – Upload your image and see how the outfit 
-                looks on you.
+           <div className="space-y-6 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+            <h3 className="text-3xl font-semibold text-cyan-500 flex items-center gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+              Our Innovative Features
+            </h3>
+            
+            <ul className="space-y-4">
+              <li className="flex items-start gap-4">
+                <div className="bg-cyan-100 p-2 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg">Image-Based Try-On</h4>
+                  <p className="text-gray-600">Upload your photo to see outfits on your body with realistic draping and fit</p>
+                </div>
               </li>
-              <li>
-                <b>AR-Based Try-On</b> – Use your laptop camera to preview outfits 
-                in real time.
+              
+              <li className="flex items-start gap-4">
+                <div className="bg-cyan-100 p-2 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg">Real-Time AR Mirror</h4>
+                  <p className="text-gray-600">Use your camera to preview outfits in motion with our augmented reality technology</p>
+                </div>
               </li>
-              <li>
-                <b>E-Commerce Integration</b> – Browse, select, and purchase your 
-                favorite styles effortlessly.
+              
+              <li className="flex items-start gap-4">
+                <div className="bg-cyan-100 p-2 rounded-full">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-cyan-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-bold text-lg">E-Commerce Integration</h4>
+                  <p className="text-gray-600">Browse, select, and purchase your favorite styles effortlessly.</p>
+                </div>
               </li>
             </ul>
           </div>

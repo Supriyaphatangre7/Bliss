@@ -33,7 +33,7 @@ export const Shop = () => {
 
   return (
     <>
-      <h1 className="text-center text-4xl font-bold my-6 signika-negative text-cyan-500">
+      <h1 className="text-center text-4xl font-bold my-6 signika-negative text-black-500">
         {searchQuery
           ? `Search Results for "${searchQuery}"`
           : category
@@ -42,7 +42,7 @@ export const Shop = () => {
             }`
           : "All Fashion"}
       </h1>
-      <hr className="mb-6 border-cyan-600" />
+      <hr className="mb-6 border-black-600" />
 
       <div className="container mx-auto px-4 mb-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -68,7 +68,7 @@ export const Shop = () => {
                 </div>
 
                 <div className="p-4 text-center flex flex-col justify-between h-28">
-                  <h5 className="text-lg font-semibold text-cyan-600">
+                  <h5 className="text-lg font-semibold text-black-600">
                     {val.name}
                   </h5>
                   <p className="text-gray-700 text-sm">Price: ₹{val.price}</p>
