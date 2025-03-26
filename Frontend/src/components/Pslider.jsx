@@ -12,7 +12,7 @@ function Pslider() {
   ];
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
+    <div className="flex justify-center mt-10 mb-10 items-center max-h-screen">
       <div className="relative w-[90%] overflow-hidden">
         <div className="flex space-x-6 p-6 overflow-x-auto scroll-smooth">
           {subCategories.map((sub, index) => (

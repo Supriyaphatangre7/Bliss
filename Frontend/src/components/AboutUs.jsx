@@ -9,12 +9,12 @@ const AboutUs = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-cyan-500 signika-negative">
             About Our Fashion Studio
           </h1>
-          <p>
+          <p className="text-xl">
             Welcome to <span className="text-cyan-500 font-semibold">Bliss</span>, where 
             technology meets fashion! We bring you an innovative <b>AR-based virtual try-on</b> 
              {" "}experience that lets you visualize outfits before making a purchase.
           </p>
-          <p className="text-sm text-gray-600 leading-relaxed">
+          <p className="text-xl">
             At <b>Bliss</b>, we aim to revolutionize online shopping by providing an 
             interactive and immersive way to try on clothes virtually. No more guesswork—just 
             a seamless, fun, and accurate way to find the perfect fit! 
@@ -25,8 +25,8 @@ const AboutUs = () => {
 
           {/* What We Offer Section */}
           <div className="space-y-3">
-            <h3 className="text-xl font-semibold text-cyan-500">What We Offer</h3>
-            <ul className="list-none pl-5 text-gray-700">
+            <h3 className="text-3xl font-semibold text-cyan-500">What We Offer</h3>
+            <ul className="list-none pl-5 text-gray-700 text-xl">
               <li>
                 <b>Image-Based Try-On</b> – Upload your image and see how the outfit 
                 looks on you.
@@ -45,13 +45,13 @@ const AboutUs = () => {
 
         {/* Right Image Section */}
         <div className="md:w-1/2 relative flex items-center justify-center">
-          <div className="absolute w-72 h-56 bg-blue-950 shadow-lg transform translate-x-24 translate-y-10 z-10"></div>
+          <div className="absolute ml-35 mb-90 w-72 h-56 bg-blue-950 shadow-lg z-10"></div>
           <img
             src="image/l6.jpg"
             alt="Creative Studio"
             className="relative w-80 h-auto shadow-lg z-20"
           />
-          <div className="absolute w-64 h-40 bg-orange-200 shadow-lg bottom-[-20px] left-[calc(50%-5rem)] flex items-center justify-center"></div>
+          <div className="absolute w-190 h-48 bg-orange-200 shadow-lg bottom-[-20px] left-[calc(30%-10rem)] flex items-center justify-center"></div>
         </div>
       </div>
     </section>
