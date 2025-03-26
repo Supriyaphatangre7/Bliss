@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <section className="max-w-6xl mx-auto px-4 py-10 overflow-hidden">
+    <section className="max-w-6xl mx-auto px-4 py-10 overflow-hidden mt-20">
       <div className="flex flex-col md:flex-row gap-10">
         {/* Left Content */}
         <div className="md:w-1/2 space-y-6">
@@ -73,14 +73,14 @@ const AboutUs = () => {
         </div>
 
         {/* Right Image Section */}
-        <div className="md:w-1/2 relative flex items-center justify-center">
-          <div className="absolute ml-35 mb-90 w-72 h-56 bg-blue-950 shadow-lg z-10"></div>
+        <div className="md:w-1/2 relative flex items-center justify-center mb-20 ml-40">
+          <div className="absolute ml-40 mb-100 w-72 h-56 bg-blue-950 shadow-lg z-10"></div>
           <img
             src="image/l6.jpg"
             alt="Creative Studio"
-            className="relative w-80 h-auto shadow-lg z-20"
+            className="relative w-90 h-auto shadow-lg z-20"
           />
-          <div className="absolute w-190 h-48 bg-orange-200 shadow-lg bottom-[-20px] left-[calc(30%-10rem)] flex items-center justify-center"></div>
+          <div className="absolute w-300 h-40 bg-orange-200 shadow-lg bottom-[35px] left-[calc(30%-10rem)] flex items-center justify-center"></div>
         </div>
       </div>
     </section>
