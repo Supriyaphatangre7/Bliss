@@ -11,8 +11,8 @@ const AboutUs = () => {
           </h1>
           <p>
             Welcome to <span className="text-cyan-500 font-semibold">Bliss</span>, where 
-            technology meets fashion! We bring you an innovative **AR-based virtual try-on** 
-            experience that lets you visualize outfits before making a purchase.
+            technology meets fashion! We bring you an innovative <b>AR-based virtual try-on</b> 
+             {" "}experience that lets you visualize outfits before making a purchase.
           </p>
           <p className="text-sm text-gray-600 leading-relaxed">
             At <b>Bliss</b>, we aim to revolutionize online shopping by providing an 
