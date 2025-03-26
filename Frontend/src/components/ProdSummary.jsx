@@ -23,7 +23,7 @@ const ProdSummary = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-        <h2 className="text-3xl font-bold text-gray-900 text-center">Order Summary</h2>
+        <h2 className="text-3xl font-bold text-cyan-500 text-center">Order Summary</h2>
         
         <div className="mt-4">
           <p className="text-lg"><strong>Product:</strong> {product.name}</p>
@@ -35,7 +35,7 @@ const ProdSummary = () => {
 
         <button
           onClick={() => navigate(`/buy/${product.id}`)}
-          className="mt-6 w-full px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition duration-300"
+          className="mt-6 w-full px-6 py-3 border-cyan-700 border-2 text-cyan-700 rounded-lg hover:bg-cyan-800 hover:text-white transition duration-300"
         >
           Confirm & Proceed to Buy
         </button>
