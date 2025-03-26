@@ -1,0 +1,577 @@
+[{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0bc"
+  },
+  "name": "Men oversized T-Shirt",
+  "image": "https://i.pinimg.com/736x/4e/d8/1d/4ed81dfade5ce4ebc67333eb6d09d271.jpg",
+  "price": 670,
+  "category": "men",
+  "subcategory": "tshirt",
+  "fabric": "Cotton",
+  "pattern": "Solid",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Breathable",
+    "material": "100% Cotton",
+    "waistband": "N/A",
+    "additional": [
+      "Preshrunk",
+      "Tagless"
+    ]
+  },
+  "sizes": [
+    38,
+    40,
+    42,
+    44
+  ],
+  "imodel": "/image/tshirtm.png"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0bd"
+  },
+  "name": "Men's Polo Shirt",
+  "image": "https://i.pinimg.com/736x/2e/f7/ed/2ef7eda54ee1dbb449b35ff8d66e1eac.jpg",
+  "price": 700,
+  "category": "men",
+  "subcategory": "top",
+  "fabric": "Pique Cotton",
+  "pattern": "Striped",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Moisture-wicking",
+    "material": "Poly-Cotton",
+    "waistband": "N/A",
+    "additional": [
+      "Collared",
+      "Three-button placket"
+    ]
+  },
+  "sizes": [
+    38,
+    40,
+    42,
+    44
+  ],
+  "imodel": "model_men_top_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0be"
+  },
+  "name": "Men's Chino Pants",
+  "image": "https://i.pinimg.com/736x/4f/c3/0f/4fc30f189c0d0b36879ba6557c94502f.jpg",
+  "price": 900,
+  "category": "men",
+  "subcategory": "bottom",
+  "fabric": "Twill Cotton",
+  "pattern": "Flat Front",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Stretch Waist",
+    "material": "Cotton Blend",
+    "waistband": "Button & Zip",
+    "additional": [
+      "Multiple pockets",
+      "Tapered leg"
+    ]
+  },
+  "sizes": [
+    30,
+    32,
+    34,
+    36
+  ],
+  "imodel": "/image/pantb.png"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0c1"
+  },
+  "name": "Men's Shorts",
+  "image": "https://i.pinimg.com/736x/4c/0b/5e/4c0b5eb0f974ea8c95e1c5d796141a02.jpg",
+  "price": 450,
+  "category": "men",
+  "subcategory": "short",
+  "fabric": "Cotton",
+  "pattern": "Cargo Style",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Relaxed Fit",
+    "material": "Heavyweight Cotton",
+    "waistband": "Button & Zip",
+    "additional": [
+      "Multiple pockets",
+      "Knee-length"
+    ]
+  },
+  "sizes": [
+    30,
+    32,
+    34,
+    36
+  ],
+  "imodel": "model_men_short_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0c2"
+  },
+  "name": "Women's V-Neck T-Shirt",
+  "image": "https://i.pinimg.com/736x/2a/bd/a2/2abda20fa4ef32d3f1c77e82f52d91a9.jpg",
+  "price": 520,
+  "category": "women",
+  "subcategory": "tshirt",
+  "fabric": "Rayon",
+  "pattern": "Marbled",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Soft Drape",
+    "material": "Rayon-Spandex",
+    "waistband": "N/A",
+    "additional": [
+      "Slight stretch",
+      "Curved hem"
+    ]
+  },
+  "sizes": [
+    8,
+    10,
+    12,
+    14
+  ],
+  "imodel": "/image/tshirtg.png"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0c3"
+  },
+  "name": "Women's Crop Top",
+  "image": "https://i.pinimg.com/736x/fc/39/54/fc3954f8b99b89f22e7b40fe72207036.jpg",
+  "price": 470,
+  "category": "women",
+  "subcategory": "top",
+  "fabric": "Cotton",
+  "pattern": "Ribbed",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Form-fitting",
+    "material": "Cotton-Elastane",
+    "waistband": "Elastic",
+    "additional": [
+      "High neck",
+      "Cropped length"
+    ]
+  },
+  "sizes": [
+    8,
+    10,
+    12,
+    14
+  ],
+  "imodel": "model_women_top_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0c4"
+  },
+  "name": "Women's High-Waist Jeans",
+  "image": "https://i.pinimg.com/474x/55/2d/f8/552df8087e681c7e99ddb3dd5c0cffd3.jpg",
+  "price": 900,
+  "category": "women",
+  "subcategory": "bottom",
+  "fabric": "Denim",
+  "pattern": "Distressed",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Stretch Denim",
+    "material": "Cotton-Polyester",
+    "waistband": "Button & Zip",
+    "additional": [
+      "Skinny fit",
+      "Five-pocket style"
+    ]
+  },
+  "sizes": [
+    26,
+    28,
+    30,
+    32
+  ],
+  "imodel": "/image/pant1.png"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0c5"
+  },
+  "name": "Women's Sports Bra",
+  "image": "https://i.pinimg.com/736x/85/29/3d/85293d3a6c68f8f0c6cbee42fc13de15.jpg",
+  "price": 400,
+  "category": "women",
+  "subcategory": "innerwear",
+  "fabric": "Nylon-Spandex",
+  "pattern": "Racerback",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "High Support",
+    "material": "Compression Fabric",
+    "waistband": "Wide Band",
+    "additional": [
+      "Moisture-wicking",
+      "Removable pads"
+    ]
+  },
+  "sizes": [
+    8,
+    10,
+    12,
+    14
+  ],
+  "imodel": "model_women_innerwear_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0c7"
+  },
+  "name": "Women's Denim Shorts",
+  "image": "https://i.pinimg.com/474x/24/00/79/240079c1a199b53022672ad7a2413372.jpg",
+  "price": 750,
+  "category": "women",
+  "subcategory": "short",
+  "fabric": "Denim",
+  "pattern": "Destroyed",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Mid-rise",
+    "material": "Stretch Denim",
+    "waistband": "Button & Zip",
+    "additional": [
+      "Distressed details",
+      "Cuffed hem"
+    ]
+  },
+  "sizes": [
+    26,
+    28,
+    30,
+    32
+  ],
+  "imodel": "model_women_short_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0c8"
+  },
+  "name": "Kids' Tshirt",
+  "image": "https://i.pinimg.com/736x/de/1b/34/de1b34ff63eb7eba71cda700e515a528.jpg",
+  "price": 350,
+  "category": "kid",
+  "subcategory": "tshirt",
+  "fabric": "Cotton",
+  "pattern": "Character Print",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Soft Feel",
+    "material": "100% Cotton",
+    "waistband": "N/A",
+    "additional": [
+      "Screen printed design",
+      "Tagless"
+    ]
+  },
+  "sizes": [
+    26,
+    28,
+    30
+  ],
+  "imodel": "model_kid_tshirt_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0c9"
+  },
+  "name": "Kids' Hooded Top",
+  "image": "https://i.pinimg.com/474x/f2/f0/73/f2f0733d5a1b8f5e5e73ee9337adc300.jpg",
+  "price": 370,
+  "category": "kid",
+  "subcategory": "top",
+  "fabric": "Fleece",
+  "pattern": "Animal Print",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Warm",
+    "material": "Polyester Fleece",
+    "waistband": "Elastic",
+    "additional": [
+      "Kangaroo pocket",
+      "Drawstring hood"
+    ]
+  },
+  "sizes": [
+    26,
+    28,
+    30
+  ],
+  "imodel": "model_kid_top_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0ca"
+  },
+  "name": "Kids' Jogger Pants",
+  "image": "https://i.pinimg.com/474x/c8/2e/00/c82e000d71caa0a291163d8da3958067.jpg",
+  "price": 400,
+  "category": "kid",
+  "subcategory": "bottom",
+  "fabric": "Cotton Blend",
+  "pattern": "Ribbed Cuffs",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Flexible",
+    "material": "Stretch Fabric",
+    "waistband": "Elastic",
+    "additional": [
+      "Ankle cuffs",
+      "Side stripes"
+    ]
+  },
+  "sizes": [
+    26,
+    28,
+    30
+  ],
+  "imodel": "model_kid_bottom_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0cb"
+  },
+  "name": "Kids' Thermal Undershirt",
+  "image": "https://i.pinimg.com/474x/7f/a4/a2/7fa4a2b258e560fab98894c9c08fc76e.jpg",
+  "price": 500,
+  "category": "kid",
+  "subcategory": "innerwear",
+  "fabric": "Thermal",
+  "pattern": "Ribbed",
+  "netQuantity": 2,
+  "features": {
+    "comfort": "Warmth",
+    "material": "Cotton Blend",
+    "waistband": "Elastic",
+    "additional": [
+      "Long sleeve",
+      "Tagless"
+    ]
+  },
+  "sizes": [
+    26,
+    28,
+    30
+  ],
+  "imodel": "model_kid_innerwear_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0cd"
+  },
+  "name": "Kids' Athletic Shorts",
+  "image": "https://i.pinimg.com/474x/45/97/d5/4597d558bc3dea61aba6992ab6566bae.jpg",
+  "price": 300,
+  "category": "kid",
+  "subcategory": "short",
+  "fabric": "Polyester",
+  "pattern": "Mesh Panels",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Breathable",
+    "material": "Quick-dry",
+    "waistband": "Elastic",
+    "additional": [
+      "Inner liner",
+      "Reflective logo"
+    ]
+  },
+  "sizes": [
+    26,
+    28,
+    30
+  ],
+  "imodel": "model_kid_short_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0ce"
+  },
+  "name": "Performance T-Shirt",
+  "image": "https://i.pinimg.com/474x/9f/9f/d6/9f9fd620a707373dc35082d89766ee95.jpg",
+  "price": 400,
+  "category": "sport",
+  "subcategory": "tshirt",
+  "fabric": "Polyester",
+  "pattern": "Moisture-wicking",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Lightweight",
+    "material": "Performance Fabric",
+    "waistband": "N/A",
+    "additional": [
+      "Ventilated mesh",
+      "UPF 50+"
+    ]
+  },
+  "sizes": [
+    30,
+    32,
+    34,
+    36
+  ],
+  "imodel": "model_sport_tshirt_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0cf"
+  },
+  "name": "Compression Top",
+  "image": "https://i.pinimg.com/474x/f2/8d/40/f28d404a6794b6d18f64d22e472612bc.jpg",
+  "price": 450,
+  "category": "sport",
+  "subcategory": "top",
+  "fabric": "Nylon-Spandex",
+  "pattern": "Racerback",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Muscle Support",
+    "material": "4-way Stretch",
+    "waistband": "Elastic",
+    "additional": [
+      "Seamless",
+      "Anti-odor"
+    ]
+  },
+  "sizes": [
+    30,
+    32,
+    34,
+    36
+  ],
+  "imodel": "model_sport_top_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0d0"
+  },
+  "name": "Training Joggers",
+  "image": "https://i.pinimg.com/474x/b1/02/3b/b1023bc15bb6b794960d1984b9068751.jpg",
+  "price": 580,
+  "category": "sport",
+  "subcategory": "bottom",
+  "fabric": "Polyester",
+  "pattern": "Brushed Interior",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Flexible",
+    "material": "Stretch Fabric",
+    "waistband": "Drawstring",
+    "additional": [
+      "Zippered pockets",
+      "Ankle cuffs"
+    ]
+  },
+  "sizes": [
+    30,
+    32,
+    34,
+    36
+  ],
+  "imodel": "model_sport_bottom_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0d1"
+  },
+  "name": "Sports Compression Shorts",
+  "image": "https://i.pinimg.com/474x/7e/a3/6c/7ea36c4120bb97a4ee2370002a2c5b44.jpg",
+  "price": 700,
+  "category": "sport",
+  "subcategory": "innerwear",
+  "fabric": "Polyamide",
+  "pattern": "Seamless",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Muscle Support",
+    "material": "Compression Fabric",
+    "waistband": "Wide Elastic",
+    "additional": [
+      "Anti-chafing",
+      "Moisture-wicking"
+    ]
+  },
+  "sizes": [
+    30,
+    32,
+    34,
+    36
+  ],
+  "imodel": "model_sport_innerwear_01"
+},
+{
+  "_id": {
+    "$oid": "67e2d37e5b01a0d12317d0d3"
+  },
+  "name": "Basketball Shorts",
+  "image": "https://i.pinimg.com/474x/c1/ea/a6/c1eaa6b9e78c7a166c464ef873db358e.jpg",
+  "price": 600,
+  "category": "sport",
+  "subcategory": "short",
+  "fabric": "Polyester",
+  "pattern": "Team Colors",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Breathable",
+    "material": "Quick-dry",
+    "waistband": "Drawstring",
+    "additional": [
+      "Side splits",
+      "Liner included"
+    ]
+  },
+  "sizes": [
+    30,
+    32,
+    34,
+    36
+  ],
+  "imodel": "model_sport_short_01"
+},
+{
+  "_id": {
+    "$oid": "67e39f687f529ca54909bcf3"
+  },
+  "name": "Women's Sleeveless Jumpsuit",
+  "image": "https://i.pinimg.com/474x/47/82/8a/47828afe330258ed3d4d577a16d12765.jpg",
+  "price": 79.99,
+  "category": "women",
+  "subcategory": "jumpsuit",
+  "fabric": "Polyester Blend",
+  "pattern": "Solid",
+  "netQuantity": 1,
+  "features": {
+    "comfort": "Lightweight & Flowy",
+    "material": "Polyester-Spandex",
+    "waistband": "Elastic with Drawstring",
+    "additional": [
+      "Adjustable Straps",
+      "Side Pockets",
+      "Wide-Leg Fit"
+    ]
+  },
+  "sizes": [
+    6,
+    8,
+    10,
+    12,
+    14
+  ],
+  "imodel": "model_women_jumpsuit_01"
+}]
