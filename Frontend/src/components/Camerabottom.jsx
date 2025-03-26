@@ -10,6 +10,8 @@ const Camerabottom = () => {
   const canvasRef = useRef(null);
   const poseRef = useRef(null);
   const [isPoseLoaded, setIsPoseLoaded] = useState(false);
+  const [isCameraOn, setIsCameraOn] = useState(false);
+    const [isStreaming, setIsStreaming] = useState(false);
   const clothingImgRef = useRef(new Image());
 
   // Load clothing image
@@ -30,10 +32,11 @@ const Camerabottom = () => {
       return;
     }
 
-    // Get key pose points
+    // Get key pose points for pants positioning
     const leftHip = landmarks[23];
     const rightHip = landmarks[24];
     const leftKnee = landmarks[25];
+    const rightKnee = landmarks[26];
     const leftAnkle = landmarks[27];
 
     if (!leftHip || !rightHip) {
@@ -41,25 +44,28 @@ const Camerabottom = () => {
       return;
     }
 
-    // **Increase Width for better fit**
-    const hipWidth = Math.abs(rightHip.x - leftHip.x) * canvas.width * 4.0; 
-
-    // **Increase Height for full coverage**
+    // Calculate pants dimensions
+    const hipWidth = Math.abs(rightHip.x - leftHip.x) * canvas.width * 4.2;
+    
+    // Calculate height based on available landmarks
     let pantsHeight;
     if (leftAnkle) {
-      pantsHeight = Math.abs(leftHip.y - leftAnkle.y) * canvas.height * 2.2; 
+      // Full leg length available
+      pantsHeight = Math.abs(leftHip.y - leftAnkle.y) * canvas.height * 2.1;
     } else if (leftKnee) {
-      pantsHeight = Math.abs(leftHip.y - leftKnee.y) * canvas.height * 3.2; 
+      // Only upper leg available
+      pantsHeight = Math.abs(leftHip.y - leftKnee.y) * canvas.height * 3.1;
     } else {
-      pantsHeight = canvas.height * 0.8; 
+      // Default height
+      pantsHeight = canvas.height * 0.8;
     }
 
     // Position at waist/hips
     const hipCenterX = (leftHip.x + rightHip.x) / 2;
     const waistY = (leftHip.y + rightHip.y) / 2;
-
+    
     const x = hipCenterX * canvas.width - hipWidth / 2;
-    const y = waistY * canvas.height - pantsHeight * 0.03; // Shift slightly lower
+    const y = waistY * canvas.height - pantsHeight * 0.1; // Slight overlap at waist
 
     ctx.drawImage(clothingImgRef.current, x, y, hipWidth, pantsHeight);
   }, []);
@@ -109,17 +115,16 @@ const Camerabottom = () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ 
         video: { 
-          width: { ideal: 720 }, // Increased height for better bottom part visibility
-          height: { ideal: 720 }, 
+          width: { ideal: 640 },
+          height: { ideal: 480 },
           facingMode: 'user' 
         } 
       });
       videoRef.current.srcObject = stream;
       videoRef.current.onloadedmetadata = () => {
-        videoRef.current.play();
-        // Ensure the canvas matches the video height dynamically
         canvasRef.current.width = videoRef.current.videoWidth;
-        canvasRef.current.height = videoRef.current.videoHeight * 1.2; // Extend height by 20%
+        canvasRef.current.height = videoRef.current.videoHeight;
+        videoRef.current.play();
         detectPose();
       };
     } catch (error) {
@@ -142,8 +147,30 @@ const Camerabottom = () => {
     };
   }, [startPoseDetection]);
 
+   const pauseCamera = useCallback(() => {
+      if (videoRef.current && videoRef.current.srcObject) {
+        videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+        videoRef.current.srcObject = null;
+      }
+      setIsPoseLoaded(false);
+      setIsCameraOn(false);
+    }, []);
+  
+  
+    const stopCamera = () => {
+      setIsStreaming(false);
+      if (videoRef.current && videoRef.current.srcObject) {
+        const stream = videoRef.current.srcObject;
+        const tracks = stream.getTracks();
+        tracks.forEach((track) => track.stop());
+        videoRef.current.srcObject = null;
+      }
+      const ctx = canvasRef.current.getContext("2d");
+      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+    };
+
   return (
-    <div style={{ position: 'relative', width: '100%', maxWidth: '820px', margin: '0 auto' }}>
+    <div style={{ position: 'relative', width: '100%', maxWidth: '640px', margin: '0 auto' }}>
       {!isPoseLoaded && <p>Loading Pose Model...</p>}
       <video 
         ref={videoRef} 
@@ -152,10 +179,16 @@ const Camerabottom = () => {
         muted 
         style={{ display: "none" }} 
       />
+
+<div className="flex gap-4">
+        <button onClick={startPoseDetection} disabled={isCameraOn} className="px-4 py-2 bg-green-500 text-white rounded-md">Start Camera</button>
+        <button onClick={pauseCamera} disabled={!isCameraOn} className="px-4 py-2 bg-yellow-500 text-white rounded-md">Pause Camera</button>
+        <button onClick={stopCamera} className="px-4 py-2 bg-red-500 text-white rounded">Stop Camera</button>
+      </div>
       <canvas 
         ref={canvasRef} 
-        width="720" 
-        height="720" 
+        width="640" 
+        height="480" 
         style={{ 
           width: '100%', 
           height: 'auto',
@@ -163,6 +196,8 @@ const Camerabottom = () => {
         }}
       />
     </div>
+
+    
   );
 };
 
