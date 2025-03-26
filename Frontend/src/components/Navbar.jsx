@@ -191,14 +191,9 @@ const Navbar = () => {
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost btn-circle avatar"
+              className="btn btn-ghost"
             >
-              <div className="w-10 lg:w-14 rounded-full">
-                <img
-                  alt="Profile"
-                  src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                />
-              </div>
+                <button className="border-2 p-2 rounded-2xl">Register</button>
             </div>
             <ul
               tabIndex={0}
