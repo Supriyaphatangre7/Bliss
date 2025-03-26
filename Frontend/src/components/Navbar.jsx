@@ -25,13 +25,12 @@ const Navbar = () => {
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              {" "}
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
-              />{" "}
+              />
             </svg>
           </div>
           <ul
@@ -94,11 +93,17 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* Right Side - Search, Cart and Profile */}
+     
       <div className="navbar-end flex items-center gap-2 sm:gap-4">
         {/* Search Bar */}
         <div className="hidden sm:block relative w-48 lg:w-64">
-          <form onSubmit={handleSearch} className="flex items-center gap-2">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch();
+            }}
+            className="flex items-center gap-2"
+          >
             <label className="input flex items-center gap-2 border-2 rounded-xl px-2 py-1">
               <svg
                 className="h-[1em] opacity-50"
@@ -122,7 +127,7 @@ const Navbar = () => {
                 className="outline-none"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleSearch(e)}
+                onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                 aria-label="Search products"
               />
             </label>

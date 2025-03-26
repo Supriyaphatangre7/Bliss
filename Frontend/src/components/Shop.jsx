@@ -3,6 +3,10 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";
 import { FaCamera } from "react-icons/fa6";
 
+// Define valid categories and subcategories to help detect search terms
+const validCategories = ['men', 'women', 'kid', 'sport'];
+const validSubcategories = ['tshirt', 'top', 'bottom', 'outwear', 'innerwear', 'shorts', 'hoodie'];
+
 export const Shop = () => {
   const [searchParams] = useSearchParams();
   const searchQuery = searchParams.get("search");
@@ -31,6 +35,22 @@ export const Shop = () => {
     fetchData();
   }, [searchQuery, category, subcategory]);
 
+  const getHeaderText = () => {
+    if (searchQuery) {
+      const terms = searchQuery.toLowerCase().split(/\s+/);
+      const cat = terms.find(t => validCategories.includes(t));
+      const subcat = terms.find(t => validSubcategories.includes(t));
+      
+      if (cat && subcat) {
+        return `${cat.charAt(0).toUpperCase() + cat.slice(1)} ${subcat.charAt(0).toUpperCase() + subcat.slice(1)}`;
+      }
+      return `Search Results for "${searchQuery}"`;
+    }
+    return category 
+      ? `${category.charAt(0).toUpperCase() + category.slice(1)} ${subcategory ? subcategory.charAt(0).toUpperCase() + subcategory.slice(1) : ""}`
+      : "All Fashion";
+  };
+
   return (
     <>
       <h1 className="text-center text-4xl font-bold my-6 signika-negative text-black-500">
@@ -52,8 +72,20 @@ export const Shop = () => {
                 key={val._id}
                 className="bg-white shadow-lg rounded-2xl overflow-hidden hover:scale-105 transition transform duration-300 relative"
               >
-                <div
-                  className="h-120 cursor-pointer"
+                <div className="absolute top-3 right-3 flex gap-2">
+                  <div className="bg-gray-200 p-2 rounded-full cursor-pointer hover:bg-gray-300 transition">
+                    <FaRegHeart className="text-black text-lg" />
+                  </div>
+                  <div
+                    className="bg-gray-200 p-2 rounded-full cursor-pointer hover:bg-gray-300 transition"
+                    onClick={() => navigate(`/try-on?clothingImage=${encodeURIComponent(val.image)}`)}
+                  >
+                    <FaCamera className="text-black text-lg" />
+                  </div>
+                </div>
+
+                <div 
+                  className="h-120 cursor-pointer" 
                   onClick={() => navigate(`/product/${val._id}`)}
                 >
                   <img

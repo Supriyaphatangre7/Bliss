@@ -110,12 +110,12 @@ const Product = () => {
           <img
             src={product.image}
             alt={product.name}
-            className="w-full h-[600px] object-cover rounded-lg shadow-lg border"
+            className="w-full h-[1000px] object-cover rounded-lg shadow-lg border"
             onError={(e) => (e.target.src = "/fallback-image.jpg")}
           />
         </div>
 
-        <div className="flex-1 space-y-6">
+        <div className="flex-1 space-y-6 mt-25">
           <h1 className="text-4xl font-bold">{product.name}</h1>
 
           <div className="text-2xl font-semibold text-gray-800">
