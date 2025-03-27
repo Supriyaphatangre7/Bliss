@@ -11,7 +11,8 @@ const Cameraopt = () => {
   const poseRef = useRef(null);
   const [isPoseLoaded, setIsPoseLoaded] = useState(false);
   const [isCameraOn, setIsCameraOn] = useState(false);
-  const [isStreaming, setIsStreaming] = useState(false);
+  // const [isStreaming, setIsStreaming] = useState(false);
+  const[isStreaming,setIsStreaming]=useState(false);
   const clothingImgRef = useRef(new Image());
 
   useEffect(() => {
@@ -137,7 +138,9 @@ const Cameraopt = () => {
       <div className="flex gap-4">
         <button onClick={startPoseDetection} disabled={isCameraOn} className="px-4 py-2 bg-green-500 text-white rounded-md">Start Camera</button>
         <button onClick={pauseCamera} disabled={!isCameraOn} className="px-4 py-2 bg-yellow-500 text-white rounded-md">Pause Camera</button>
-        <button onClick={stopCamera} className="px-4 py-2 bg-red-500 text-white rounded">Stop Camera</button>
+        <button onClick={stopCamera} disabled={!isStreaming} className="px-4 py-2 bg-red-500 text-white rounded">
+  Stop Camera
+</button>
       </div>
       <video ref={videoRef} autoPlay playsInline muted style={{ display: "none" }} />
       <canvas ref={canvasRef} width="640" height="480" className="border-3 rounded-2xl h-[90vh] shadow-gray-600" />
